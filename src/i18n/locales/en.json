@@ -1,0 +1,25 @@
+{
+  "meta": { "description": "{name}'s portfolio, {specialty}. Projects, ideas and a personal space made with attention to detail.", "ogLocale": "en_GB" },
+  "brand": "portfolio",
+  "skipToContent": "Skip to content",
+  "navigation": { "label": "Main navigation", "home": "Go to home", "projects": "Projects", "about": "About me", "contact": "Contact", "openMenu": "Open menu", "closeMenu": "Close menu" },
+  "language": { "choose": "Language", "spanish": "Español", "english": "English" },
+  "theme": { "label": "Theme", "system": "System", "light": "Light", "dark": "Dark" },
+  "hero": {
+    "title": "Keep it simple.",
+    "titleAccent": "Make it matter.",
+    "description": "Projects, ideas and a little curiosity.",
+    "descriptionSecond": "A space of my own, taking shape.",
+    "explore": "Explore projects",
+    "artFirst": "Less noise.",
+    "artSecond": "More intention.",
+    "footnote": "A glimpse of what's next.",
+    "scroll": "Scroll to discover"
+  },
+  "projects": { "eyebrow": "01 / PROJECTS", "heading": "What's taking shape", "asideFirst": "An initial selection.", "asideSecond": "A starting point.", "view": "View project", "example": "Sample concept" },
+  "preview": { "portfolioCaption": "SIMPLE, BY DESIGN", "personalSpace": "A PERSONAL SPACE", "conceptCaption": "A STUDY OF SHAPES", "conceptFooter": "Room for ideas.", "conceptVisualCaption": "SHAPE & SPACE" },
+  "dialog": { "close": "Close project", "example": "SAMPLE CONCEPT", "technologies": "Technologies and areas", "visit": "Visit project", "code": "View code" },
+  "about": { "eyebrow": "02 / ABOUT ME", "heading": "A space of my own.", "headingAccent": "On the internet, too.", "note": "Always taking shape", "placeholder": "Placeholder introduction · more to come." },
+  "contact": { "eyebrow": "03 / CONTACT", "heading": "Every good idea", "headingSecond": "starts with a", "headingAccent": "hello.", "description": "A project, a question or a conversation.", "cta": "Let's talk", "pending": "Contact details coming soon", "pendingDescription": "Contact details are not set yet." },
+  "footer": { "personalPortfolio": "Personal portfolio", "note": "Made with intention.", "backToTop": "Back to top" }
+}

@@ -1,0 +1,164 @@
+import { expect, test } from '@playwright/test'
+import type { Page } from '@playwright/test'
+import spanish from '../src/i18n/locales/es.json' with { type: 'json' }
+import english from '../src/i18n/locales/en.json' with { type: 'json' }
+
+async function capturePreview(page: Page, language: 'es' | 'en') {
+  await page.evaluate(async () => { await document.fonts.ready })
+  for (const section of await page.locator('.reveal').all()) {
+    await section.scrollIntoViewIfNeeded()
+    await expect(section).toHaveCSS('opacity', '1')
+  }
+  await page.evaluate(() => window.scrollTo({ top: 0, behavior: 'instant' }))
+  await page.screenshot({ path: `artifacts/${test.info().project.name}-${language}.png`, fullPage: true, animations: 'disabled' })
+}
+
+test('the page loads without runtime errors and fits the viewport', async ({ page }) => {
+  const errors: string[] = []
+  page.on('pageerror', (error) => errors.push(error.message))
+  await page.goto('/')
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Hacerlo simple.Hacerlo bien.')
+  await expect(page.getByRole('button', { name: 'Ver proyecto Portfolio personal' })).toBeVisible()
+  await expect(page.getByText('Concepto de ejemplo', { exact: true })).toBeVisible()
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true)
+  expect(errors).toEqual([])
+  await capturePreview(page, 'es')
+})
+
+test('project details close with Escape and restore focus', async ({ page }) => {
+  await page.goto('/')
+  const trigger = page.getByRole('button', { name: 'Ver proyecto Portfolio personal' })
+  await trigger.click()
+  const dialog = page.getByRole('dialog', { name: 'Portfolio personal' })
+  await expect(dialog).toBeVisible()
+  await expect(page.getByRole('button', { name: 'Cerrar proyecto' })).toBeFocused()
+  await page.keyboard.press('Shift+Tab')
+  expect(await page.getByRole('dialog').evaluate((dialog) => dialog.contains(document.activeElement))).toBe(true)
+  await page.keyboard.press('Escape')
+  await expect(dialog).not.toBeVisible()
+  await expect(trigger).toBeFocused()
+  expect(await page.evaluate(() => document.body.style.overflow)).not.toBe('hidden')
+})
+
+test('language selection updates content and links and persists across reloads', async ({ page }) => {
+  await page.goto('/')
+  const linkedinLink = page.getByRole('link', { name: 'LinkedIn', exact: true })
+  await expect(linkedinLink).toHaveAttribute('href', 'https://linkedin.com/in/mikel-pastor?locale=es_ES')
+  await page.getByRole('button', { name: 'English', exact: true }).click()
+  await expect(linkedinLink).toHaveAttribute('href', 'https://linkedin.com/in/mikel-pastor')
+  await expect(page.locator('html')).toHaveAttribute('lang', 'en')
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Keep it simple.Make it matter.')
+  await expect(page.getByRole('button', { name: 'View project Personal portfolio' })).toBeVisible()
+  await expect(page.locator('meta[name="description"]')).toHaveAttribute('content', /Mikel Pastor's portfolio/)
+  await expect(page.getByRole('link', { name: "Let's talk" })).toHaveAttribute('href', 'mailto:mikelp243@gmail.com')
+  await page.reload()
+  await expect(page.locator('html')).toHaveAttribute('lang', 'en')
+  await expect(linkedinLink).toHaveAttribute('href', 'https://linkedin.com/in/mikel-pastor')
+  await expect(page.getByRole('button', { name: 'English', exact: true })).toHaveAttribute('aria-pressed', 'true')
+  await capturePreview(page, 'en')
+  await page.getByRole('button', { name: 'View project Personal portfolio' }).click()
+  await expect(page.getByRole('dialog', { name: 'Personal portfolio' })).toBeVisible()
+  await page.getByRole('button', { name: 'Close project' }).click()
+  await page.getByRole('button', { name: 'Español', exact: true }).click()
+  await expect(linkedinLink).toHaveAttribute('href', 'https://linkedin.com/in/mikel-pastor?locale=es_ES')
+  await expect(page.locator('html')).toHaveAttribute('lang', 'es')
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Hacerlo simple.Hacerlo bien.')
+})
+
+test('contact details are loaded from the configuration', async ({ page }) => {
+  await page.goto('/')
+  await expect(page.getByRole('link', { name: 'Ir al inicio' })).toHaveText('Mikel Pastor.')
+  await expect(page.getByText('SOFTWARE DEVELOPER', { exact: true })).toBeVisible()
+  await expect(page.getByRole('link', { name: 'Hablemos' })).toHaveAttribute('href', 'mailto:mikelp243@gmail.com')
+  await expect(page.getByRole('link', { name: 'GitHub', exact: true })).toHaveAttribute('href', 'https://github.com/mikelpastor24')
+  await expect(page.getByRole('link', { name: 'LinkedIn', exact: true })).toHaveAttribute('href', 'https://linkedin.com/in/mikel-pastor?locale=es_ES')
+})
+
+test('language switching works when local storage is unavailable', async ({ page }) => {
+  await page.addInitScript(() => {
+    Object.defineProperty(window, 'localStorage', { get() { throw new Error('Storage blocked') } })
+  })
+  await page.goto('/')
+  await page.getByRole('button', { name: 'English', exact: true }).click()
+  await expect(page.locator('html')).toHaveAttribute('lang', 'en')
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Keep it simple.Make it matter.')
+})
+
+test.describe('browser language preference', () => {
+  test.use({ locale: 'en-US' })
+  test('English is detected when no language preference has been saved', async ({ page }) => {
+    await page.goto('/')
+    await expect(page.locator('html')).toHaveAttribute('lang', 'en')
+    await expect(page.getByRole('link', { name: 'Explore projects' })).toBeVisible()
+  })
+})
+
+test('the layout fits small mobile, tablet, and desktop viewports in both languages', async ({ page, isMobile }) => {
+  test.skip(isMobile, 'Viewport resizing is covered by the desktop project without device emulation.')
+  await page.goto('/')
+  await page.evaluate(async () => { await document.fonts.ready })
+  for (const width of [320, 640, 641, 768, 1024, 1440]) {
+    await page.setViewportSize({ width, height: 900 })
+    for (const language of ['English', 'Español']) {
+      await page.getByRole('button', { name: language, exact: true }).click()
+      expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth), `Viewport width ${width}, language ${language}`).toBe(true)
+    }
+  }
+})
+
+test('navigation uses English anchors in both languages and closes the mobile menu', async ({ page, isMobile }) => {
+  await page.goto('/')
+  for (const { button, messages } of [{ button: 'Español', messages: spanish }, { button: 'English', messages: english }]) {
+    await page.getByRole('button', { name: button, exact: true }).click()
+    const sections = [
+      { id: 'projects', label: messages.navigation.projects },
+      { id: 'about', label: messages.navigation.about },
+      { id: 'contact', label: messages.navigation.contact },
+    ]
+    for (const { id, label } of sections) {
+      if (isMobile) {
+        await page.getByRole('button', { name: messages.navigation.openMenu }).click()
+        await expect(page.getByRole('button', { name: messages.navigation.closeMenu })).toHaveAttribute('aria-expanded', 'true')
+      }
+      await page.getByRole('navigation').getByRole('link', { name: label, exact: true }).click()
+      await expect(page).toHaveURL(new RegExp(`#${id}$`))
+      await expect(page.locator(`#${id}`).getByRole('heading', { level: 2 })).toBeInViewport()
+      if (isMobile) await expect(page.getByRole('button', { name: messages.navigation.openMenu })).toHaveAttribute('aria-expanded', 'false')
+    }
+
+    await page.getByRole('link', { name: messages.navigation.home }).click()
+    await expect(page).toHaveURL(/#home$/)
+    await expect(page.getByRole('heading', { level: 1 })).toBeInViewport()
+    await page.getByRole('link', { name: messages.footer.backToTop }).click()
+    await expect(page).toHaveURL(/#home$/)
+    await expect(page.getByRole('heading', { level: 1 })).toBeInViewport()
+
+    await page.getByRole('link', { name: messages.skipToContent }).focus()
+    await page.keyboard.press('Enter')
+    await expect(page).toHaveURL(/#main-content$/)
+    await expect(page.getByRole('main').getByRole('heading', { level: 1 })).toBeInViewport()
+  }
+})
+
+test('reduced motion keeps sections visible and disables animations', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' })
+  await page.goto('/')
+  await page.getByRole('link', { name: 'Explorar proyectos' }).click()
+  await expect(page.getByRole('heading', { name: /Lo que va tomando forma/ })).toBeInViewport()
+  const styles = await page.locator('.hero-copy').evaluate((element) => ({
+    animation: getComputedStyle(element).animationName,
+    scroll: getComputedStyle(document.documentElement).scrollBehavior,
+  }))
+  expect(styles).toEqual({ animation: 'none', scroll: 'auto' })
+  await expect(page.locator('.reveal-pending')).toHaveCount(0)
+})
+
+test('Escape closes the mobile menu and restores focus', async ({ page, isMobile }) => {
+  test.skip(!isMobile, 'Desktop navigation is always visible.')
+  await page.goto('/')
+  await page.getByRole('button', { name: 'Abrir menú' }).click()
+  await page.getByRole('navigation').getByRole('link', { name: 'Proyectos' }).focus()
+  await page.keyboard.press('Escape')
+  await expect(page.getByRole('button', { name: 'Abrir menú' })).toBeFocused()
+  await expect(page.getByRole('navigation').getByRole('link', { name: 'Proyectos' })).not.toBeVisible()
+})

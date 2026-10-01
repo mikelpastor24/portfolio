@@ -1,0 +1,74 @@
+{
+  "profile": {
+    "name": "Mikel Pastor",
+    "specialty": "Software Developer",
+    "email": "mikelp243@gmail.com",
+    "github": "https://github.com/mikelpastor24",
+    "linkedin": {
+      "es": "https://linkedin.com/in/mikel-pastor?locale=es_ES",
+      "en": "https://linkedin.com/in/mikel-pastor"
+    },
+    "about": {
+      "es": [
+        "Soy Mikel Pastor, Software Developer. Este es mi espacio para compartir proyectos, ideas y lo que voy aprendiendo por el camino.",
+        "Este portfolio está tomando forma. Pronto añadiré más sobre mi recorrido y los proyectos en los que trabajo."
+      ],
+      "en": [
+        "I'm Mikel Pastor, a Software Developer. This is my space to share projects, ideas and what I learn along the way.",
+        "This portfolio is taking shape. I'll soon add more about my background and the projects I work on."
+      ]
+    },
+    "aboutIsPlaceholder": true
+  },
+  "projects": [
+    {
+      "id": "personal-portfolio",
+      "title": { "es": "Portfolio personal", "en": "Personal portfolio" },
+      "category": { "es": "Web personal", "en": "Personal website" },
+      "description": { "es": "Un pequeño espacio en internet, con lo esencial.", "en": "A small space on the internet, with just the essentials." },
+      "details": {
+        "es": [
+          "Este mismo portfolio es el primer proyecto de este espacio: una aplicación en React con una presentación clara, proyectos y contacto.",
+          "El diseño combina una base cálida, tipografía amplia y animaciones sutiles. Se adapta al móvil, está disponible en español e inglés y respeta las preferencias de movimiento reducido."
+        ],
+        "en": [
+          "This portfolio is the first project in this space: a React application with a clear introduction, projects and contact details.",
+          "The design brings together a warm base, generous typography and subtle animations. It adapts to mobile, is available in Spanish and English, and respects reduced motion preferences."
+        ]
+      },
+      "technologies": ["React", "TypeScript", "CSS"],
+      "preview": "portfolio",
+      "status": { "es": "Primera versión", "en": "First version" },
+      "isExample": false,
+      "url": "",
+      "repository": ""
+    },
+    {
+      "id": "interface-study",
+      "title": { "es": "Estudio de interfaz", "en": "Interface study" },
+      "category": { "es": "Concepto visual", "en": "Visual concept" },
+      "description": { "es": "Una exploración de formas, espacios y tipografía.", "en": "An exploration of shapes, space and typography." },
+      "details": {
+        "es": [
+          "Esta tarjeta es un concepto de ejemplo para mostrar cómo se presentará un proyecto. No representa un trabajo profesional realizado.",
+          "Un espacio reservado para próximos proyectos, con su contexto, proceso y resultado."
+        ],
+        "en": [
+          "This card is a sample concept to show how a project will be presented. It does not represent completed professional work.",
+          "A space reserved for future projects, with their context, process and outcome."
+        ]
+      },
+      "technologies": ["CSS"],
+      "preview": "concept",
+      "status": { "es": "Ejemplo provisional", "en": "Placeholder example" },
+      "isExample": true,
+      "url": "",
+      "repository": ""
+    }
+  ],
+  "principles": [
+    { "title": { "es": "Claridad", "en": "Clarity" }, "description": { "es": "Lo importante, fácil de encontrar.", "en": "What matters, easy to find." } },
+    { "title": { "es": "Curiosidad", "en": "Curiosity" }, "description": { "es": "Siempre hay algo nuevo que explorar.", "en": "There's always something new to explore." } },
+    { "title": { "es": "Cuidado", "en": "Care" }, "description": { "es": "Los pequeños detalles también cuentan.", "en": "The little details matter too." } }
+  ]
+}
