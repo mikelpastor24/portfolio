@@ -1,14 +1,13 @@
-import { profile } from '../content/portfolio'
+import { profile, socialLinks } from '../content/portfolio'
 import { Icon } from './Icon'
 import { Reveal } from './Reveal'
 import { useLocale } from '../i18n/LocaleProvider'
 
 export function Contact() {
   const { locale, messages } = useLocale()
-  const socialLinks = [
-    { name: 'GitHub', url: profile.github },
-    { name: 'LinkedIn', url: profile.linkedin[locale] },
-  ].filter((link) => link.url)
+  const visibleSocialLinks = socialLinks
+    .map((link) => ({ ...link, url: typeof link.url === 'string' ? link.url : link.url[locale] }))
+    .filter((link) => link.url.trim())
 
   return (
     <section id="contact" className="contact-section" aria-labelledby="contact-heading">
@@ -27,9 +26,14 @@ export function Contact() {
               <p>{messages.contact.pending}<span>{messages.contact.pendingDescription}</span></p>
             </div>
           )}
-          {socialLinks.length > 0 && (
+          {visibleSocialLinks.length > 0 && (
             <div className="social-links">
-              {socialLinks.map((link) => <a href={link.url} key={link.name} target="_blank" rel="noopener noreferrer">{link.name} <Icon name="arrow-up-right" /></a>)}
+              {visibleSocialLinks.map((link) => (
+                <a href={link.url} key={link.id} target="_blank" rel="noopener noreferrer">
+                  <span className="social-icon" aria-hidden="true" style={{ maskImage: `url("${link.icon}")` }} />
+                  {link.name}
+                </a>
+              ))}
             </div>
           )}
         </div>

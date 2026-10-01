@@ -2,6 +2,7 @@ import { expect, test } from '@playwright/test'
 import type { Page } from '@playwright/test'
 import spanish from '../src/i18n/locales/es.json' with { type: 'json' }
 import english from '../src/i18n/locales/en.json' with { type: 'json' }
+import configuration from '../src/content/portfolio.json' with { type: 'json' }
 
 async function capturePreview(page: Page, language: 'es' | 'en') {
   await page.evaluate(async () => { await document.fonts.ready })
@@ -72,6 +73,54 @@ test('contact details are loaded from the configuration', async ({ page }) => {
   await expect(page.getByRole('link', { name: 'Hablemos' })).toHaveAttribute('href', 'mailto:mikelp243@gmail.com')
   await expect(page.getByRole('link', { name: 'GitHub', exact: true })).toHaveAttribute('href', 'https://github.com/mikelpastor24')
   await expect(page.getByRole('link', { name: 'LinkedIn', exact: true })).toHaveAttribute('href', 'https://linkedin.com/in/mikel-pastor?locale=es_ES')
+})
+
+test('new social networks support custom icons and URLs per language', async ({ page, isMobile }) => {
+  const customConfiguration = structuredClone(configuration)
+  customConfiguration.profile.socialLinks.push(
+    {
+      id: 'example-community',
+      name: 'Example Community',
+      url: { es: 'https://example.com/es/profile', en: 'https://example.com/en/profile' },
+      icon: '/icons/community.svg',
+    },
+    {
+      id: 'english-community',
+      name: 'English Community',
+      url: { es: '  ', en: 'https://example.com/en/community' },
+      icon: '/icons/community.svg',
+    },
+  )
+  await page.route('**/src/content/portfolio.json*', (route) => route.fulfill({
+    contentType: 'application/javascript',
+    body: `export default ${JSON.stringify(customConfiguration)}`,
+  }))
+  await page.route('**/icons/community.svg', (route) => route.fulfill({
+    contentType: 'image/svg+xml',
+    body: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7"/></svg>',
+  }))
+  const iconResponse = page.waitForResponse('**/icons/community.svg')
+  await page.goto('/')
+  await page.locator('#contact').scrollIntoViewIfNeeded()
+  expect((await iconResponse).ok()).toBe(true)
+  const communityLink = page.getByRole('link', { name: 'Example Community', exact: true })
+  await expect(communityLink).toBeVisible()
+  await expect(communityLink).toHaveAttribute('href', 'https://example.com/es/profile')
+  await communityLink.focus()
+  await expect(communityLink).toBeFocused()
+  await expect(page.getByRole('link', { name: 'English Community', exact: true })).toHaveCount(0)
+
+  await page.getByRole('button', { name: 'English', exact: true }).click()
+  await expect(communityLink).toHaveAttribute('href', 'https://example.com/en/profile')
+  await expect(page.getByRole('link', { name: 'English Community', exact: true })).toHaveAttribute('href', 'https://example.com/en/community')
+  await page.evaluate(async () => { await document.fonts.ready })
+  const widths = isMobile ? [page.viewportSize()!.width] : [320, 641, 768, 1024, 1440]
+  for (const width of widths) {
+    if (!isMobile) await page.setViewportSize({ width, height: 900 })
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth), `Social links at viewport width ${width}`).toBe(true)
+  }
+  await page.getByRole('button', { name: 'Español', exact: true }).click()
+  await expect(page.getByRole('link', { name: 'English Community', exact: true })).toHaveCount(0)
 })
 
 test('language switching works when local storage is unavailable', async ({ page }) => {

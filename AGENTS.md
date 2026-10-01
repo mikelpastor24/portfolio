@@ -20,6 +20,7 @@ The website should clearly present their profile, projects, and contact informat
 ## Structure and commands
 
 - `src/content/portfolio.json` centralizes the profile, projects, and links. Unfinished content must remain clearly identified as a placeholder.
+- `profile.socialLinks` lists social networks with an English `id`, a `name`, an `icon` path, and a `url` that can be a string or an `es`/`en` object. Place SVG icons in `public/icons/`; CSS masks make them follow the link color in both themes. Keep their license notices with the assets.
 - `src/i18n/locales/es.json` and `en.json` contain UI text. Translate all new UI text, including accessible labels; `LocaleProvider` manages language selection and persistence.
 - `src/components/` contains page sections and reusable components.
 - Keep section IDs and URL fragments in English and stable across languages: `home`, `main-content`, `projects`, `about`, and `contact`. Update navigation, calls to action, skip links, and tests together when changing an ID.

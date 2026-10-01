@@ -23,11 +23,28 @@ npm run preview
 
 ## Customizing the content
 
-Edit `src/content/portfolio.json` to change the name, specialty, introduction, email, GitHub, LinkedIn, and projects. The included configuration contains Mikel Pastor's profile; replace it with your own details when adapting the project. Contact links appear only when a value is configured. Once the introduction is complete, set `aboutIsPlaceholder` to `false`.
+Edit `src/content/portfolio.json` to change the name, specialty, introduction, email, social links, and projects. The included configuration contains Mikel Pastor's profile; replace it with your own details when adapting the project. Contact links appear only when a value is configured. Once the introduction is complete, set `aboutIsPlaceholder` to `false`.
 
 The first project describes this website. The second is a visual concept explicitly labeled as an example: replace it with a real project or remove it. Each project can include `url` and `repository`; these links appear in its details dialog.
 
 The page title and metadata are generated from the JSON configuration and translations, so you do not need to repeat your name in the HTML. The favicon is in `public/favicon.svg` and uses a centered MP monogram outlined from DM Sans, matching the website's wordmark font.
+
+### Social links and icons
+
+Social networks are listed in `profile.socialLinks`. Each entry has a unique English `id`, a display `name`, a `url`, and an `icon` path:
+
+```json
+{
+  "id": "github",
+  "name": "GitHub",
+  "url": "https://github.com/mikelpastor24",
+  "icon": "/icons/github.svg"
+}
+```
+
+To add any other network, place its monochrome SVG in `public/icons/` and add an entry to the array. No component changes are needed. Icons use CSS masks to match the link color in light and dark themes, while the text remains the link's accessible name. A URL can be a string or an object with `es` and `en` destinations; links with an empty or whitespace-only URL for the selected language are hidden.
+
+The included GitHub and LinkedIn icons come from [Bootstrap Icons](https://icons.getbootstrap.com/). Their MIT license is preserved in `public/icons/LICENSE`.
 
 ## Spanish and English
 
@@ -39,10 +56,10 @@ UI text is stored in `src/i18n/locales/es.json` and `src/i18n/locales/en.json`. 
 
 The ES / EN selector updates all sections, project details, accessible labels, and metadata. The selection is saved in `localStorage`. On the first visit, the application detects a supported browser language and falls back to Spanish if none is found.
 
-The LinkedIn link also depends on the selected language. Edit both destinations in `profile.linkedin` inside `src/content/portfolio.json`:
+The LinkedIn link also depends on the selected language. Edit the LinkedIn entry's `url` in `profile.socialLinks` inside `src/content/portfolio.json`:
 
 ```json
-"linkedin": {
+"url": {
   "es": "https://linkedin.com/in/mikel-pastor?locale=es_ES",
   "en": "https://linkedin.com/in/mikel-pastor"
 }
@@ -68,6 +85,7 @@ Choosing `Light` or `Dark` saves the preference in `localStorage` under `portfol
 - `src/i18n/`: translations, language detection, and selection.
 - `src/theme/`: application theme and system preferences.
 - `src/styles.css`: styling, responsive layout, and reduced motion support.
+- `public/icons/`: social SVG icons and their license notice.
 - `tests/portfolio.spec.ts`: browser checks for desktop and mobile.
 - `tests/theme.spec.ts`: system theme detection, manual selection, and persistence.
 

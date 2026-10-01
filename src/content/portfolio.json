@@ -3,11 +3,23 @@
     "name": "Mikel Pastor",
     "specialty": "Software Developer",
     "email": "mikelp243@gmail.com",
-    "github": "https://github.com/mikelpastor24",
-    "linkedin": {
-      "es": "https://linkedin.com/in/mikel-pastor?locale=es_ES",
-      "en": "https://linkedin.com/in/mikel-pastor"
-    },
+    "socialLinks": [
+      {
+        "id": "github",
+        "name": "GitHub",
+        "url": "https://github.com/mikelpastor24",
+        "icon": "/icons/github.svg"
+      },
+      {
+        "id": "linkedin",
+        "name": "LinkedIn",
+        "url": {
+          "es": "https://linkedin.com/in/mikel-pastor?locale=es_ES",
+          "en": "https://linkedin.com/in/mikel-pastor"
+        },
+        "icon": "/icons/linkedin.svg"
+      }
+    ],
     "about": {
       "es": [
         "Soy Mikel Pastor, Software Developer. Este es mi espacio para compartir proyectos, ideas y lo que voy aprendiendo por el camino.",

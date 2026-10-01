@@ -4,6 +4,13 @@ import type { Locale } from '../i18n/types.ts'
 type LocalizedText = Record<Locale, string>
 type Preview = 'portfolio' | 'concept'
 
+export type SocialLink = {
+  id: string
+  name: string
+  url: string | LocalizedText
+  icon: string
+}
+
 export type Project = {
   id: string
   title: LocalizedText
@@ -24,6 +31,7 @@ function getPreview(value: string): Preview {
 }
 
 export const profile = configuration.profile
+export const socialLinks: SocialLink[] = profile.socialLinks
 export function formatProfileText(text: string) {
   return text.replaceAll('{name}', profile.name).replaceAll('{specialty}', profile.specialty)
 }
