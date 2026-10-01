@@ -10,6 +10,7 @@ The website should clearly present their profile, projects, and contact informat
 - React is a project requirement.
 - Communicate with the user in Spanish.
 - The user wants to make this project public and open source. Write all code in English, including variable, function, type, and component names, filenames, CSS classes and custom properties, DOM IDs, configuration keys, and internal slugs. Write documentation, comments, test descriptions, diagnostics, and other developer-facing text in English too.
+- The project uses the MIT license. Preserve the root `LICENSE` and third-party license and copyright notices.
 - Keep the website available in Spanish and English. Spanish text is expected in localization data and test assertions that verify Spanish UI labels.
 - The design should be simple and clean, with subtle animations and little visual noise.
 - Personal information and projects must be editable through JSON.

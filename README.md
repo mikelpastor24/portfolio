@@ -116,3 +116,7 @@ The application does not require external services to run. The DM Sans font is s
 Write all code in English, including variable, function, type, and component names, filenames, CSS classes and custom properties, DOM IDs, configuration keys, and internal slugs. Documentation, comments, test descriptions, diagnostics, and other developer-facing text must also be in English. Keep UI content localized in Spanish and English, including accessible labels and the Spanish strings used in UI assertions.
 
 Section anchors are `#home`, `#projects`, `#about`, and `#contact`; the skip link targets `#main-content`. These identifiers stay the same in both languages.
+
+## License
+
+This project is licensed under the [MIT License](LICENSE), copyright 2026 Mikel Pastor. Third-party dependencies and assets retain their respective licenses, including the [Bootstrap Icons notice](public/icons/LICENSE).
