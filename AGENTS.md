@@ -30,7 +30,7 @@ The website should clearly present their profile, projects, and contact informat
 - `npm run dev` starts the local server; `npm run build` checks TypeScript and generates `dist/`.
 - `npm run lint` runs Oxlint; `npm test` checks desktop and mobile interactions with Playwright.
 - Browser checks use Google Chrome, as requested by the user.
-- The README documents setup and browser options for testing.
+- The README presents the project's purpose, features, technologies, and links to technical documentation in `docs/`. Setup and browser options for testing are documented in `docs/development.md`.
 
 ## Development
 
@@ -39,7 +39,7 @@ The website should clearly present their profile, projects, and contact informat
 - Keep components small and reusable, with clear names and specific responsibilities.
 - Choose a simple structure and add dependencies only when they serve a concrete purpose.
 - Separate portfolio data from presentation when it makes content easier to update.
-- Keep the README up to date with prerequisites and actual commands for installing dependencies, development, and production builds.
+- Keep the README concise and put technical instructions in `docs/`. Keep `docs/development.md` up to date with prerequisites and actual commands for installing dependencies, development, production builds, and browser tests.
 
 ## Design and content
 
