@@ -72,6 +72,21 @@
       },
       "technologies": ["Jev", "TypeSafe"],
       "preview": "gamer",
+      "cover": "/media/gamer-jev/jev-beats-pokemon-red-first-gym.jpg",
+      "media": [
+        {
+          "type": "video",
+          "src": "/media/gamer-jev/jev-starts-playing-pokemon-red.mp4",
+          "poster": "/media/gamer-jev/jev-starts-playing-pokemon-red.jpg",
+          "title": { "es": "Jev empieza Pokémon Rojo", "en": "Jev starts Pokémon Red" }
+        },
+        {
+          "type": "video",
+          "src": "/media/gamer-jev/jev-beats-pokemon-red-first-gym.mp4",
+          "poster": "/media/gamer-jev/jev-beats-pokemon-red-first-gym.jpg",
+          "title": { "es": "Jev supera el primer gimnasio", "en": "Jev beats the first gym" }
+        }
+      ],
       "status": { "es": "Pokémon Gen I", "en": "Pokémon Gen I" },
       "isExample": false,
       "url": "",

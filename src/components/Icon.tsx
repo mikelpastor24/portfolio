@@ -1,5 +1,5 @@
 type IconProps = {
-  name: 'arrow-up-right' | 'arrow-down' | 'arrow-up' | 'close' | 'menu' | 'plus' | 'sun' | 'moon' | 'monitor'
+  name: 'arrow-up-right' | 'arrow-down' | 'arrow-up' | 'close' | 'menu' | 'plus' | 'sun' | 'moon' | 'monitor' | 'play'
   className?: string
 }
 
@@ -13,6 +13,7 @@ const paths: Record<IconProps['name'], string> = {
   sun: 'M16 12a4 4 0 1 1-8 0 4 4 0 0 1 8 0M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5',
   moon: 'M20.2 13.8A8.5 8.5 0 0 1 10.2 3.8a8.5 8.5 0 1 0 10 10Z',
   monitor: 'M5 4h14a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1ZM12 16v4m-4 0h8',
+  play: 'm9 5 11 7-11 7Z',
 }
 
 export function Icon({ name, className }: IconProps) {

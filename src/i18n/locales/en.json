@@ -33,6 +33,7 @@
     "schemaCaption": "SCHEMAS TAKING SHAPE"
   },
   "dialog": { "close": "Close project", "example": "SAMPLE CONCEPT", "technologies": "Technologies and areas", "visit": "Visit project", "code": "View code" },
+  "media": { "gallery": "Project images and videos", "choose": "Choose an image or video", "video": "Video", "image": "Image", "error": "This file could not be loaded.", "openFile": "Open file" },
   "about": { "eyebrow": "02 / ABOUT ME", "heading": "A space of my own.", "headingAccent": "On the internet, too.", "note": "Always taking shape", "placeholder": "Placeholder introduction · more to come." },
   "contact": { "eyebrow": "03 / CONTACT", "heading": "Every good idea", "headingSecond": "starts with a", "headingAccent": "hello.", "description": "A project, a question or a conversation.", "cta": "Let's talk", "pending": "Contact details coming soon", "pendingDescription": "Contact details are not set yet." },
   "footer": { "personalPortfolio": "Personal portfolio", "note": "Made with intention.", "backToTop": "Back to top" }

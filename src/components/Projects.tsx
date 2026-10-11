@@ -1,7 +1,7 @@
 import { projects } from '../content/portfolio'
 import type { Project } from '../content/portfolio'
 import { Icon } from './Icon'
-import { ProjectPreview } from './ProjectPreview'
+import { ProjectThumbnail } from './ProjectThumbnail'
 import { Reveal } from './Reveal'
 import { useLocale } from '../i18n/LocaleProvider'
 
@@ -22,7 +22,7 @@ export function Projects({ onSelect }: { onSelect: (project: Project) => void })
             <article className="project-card">
               <button className="project-open" onClick={() => onSelect(project)} aria-label={`${messages.projects.view} ${project.title[locale]}`}>
                 <div className="project-image-wrap">
-                  <ProjectPreview variant={project.preview} />
+                  <ProjectThumbnail project={project} />
                   <span className="project-image-action"><Icon name="arrow-up-right" /></span>
                   {project.isExample && <span className="example-label">{messages.projects.example}</span>}
                 </div>

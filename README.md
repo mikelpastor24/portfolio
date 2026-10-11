@@ -11,6 +11,7 @@ I've kept the design simple and clean, with warm neutral colors, a green accent,
 - Light, dark, and system themes.
 - Keyboard navigation and support for reduced motion preferences.
 - Profile, projects, and links editable through JSON.
+- Project galleries with images and videos.
 
 I'm still adding content, so unfinished sections are clearly labeled as placeholders.
 

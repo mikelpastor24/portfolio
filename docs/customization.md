@@ -12,6 +12,49 @@ The `preview` field selects a decorative illustration: `portfolio`, `gamer`, `sc
 
 Keep unfinished content clearly identified as a placeholder. Do not present sample projects as completed professional work.
 
+## Project images and videos
+
+Add an optional `media` array to a project to show real screenshots or recordings in its details dialog. Each item has a `type` (`image` or `video`), a `src`, and a descriptive `title` in both languages. The title also provides the accessible image description or video label. Videos can include a `poster` image.
+
+```json
+"cover": "/media/gamer-jev/jev-beats-pokemon-red-first-gym.jpg",
+"media": [
+  {
+    "type": "video",
+    "src": "/media/gamer-jev/jev-starts-playing-pokemon-red.mp4",
+    "poster": "/media/gamer-jev/jev-starts-playing-pokemon-red.jpg",
+    "title": { "es": "Jev empieza Pokémon Rojo", "en": "Jev starts Pokémon Red" }
+  },
+  {
+    "type": "image",
+    "src": "/media/my-project/screenshot.webp",
+    "title": { "es": "Vista del proyecto", "en": "Project overview" }
+  }
+]
+```
+
+Place published files in `public/media/<project-id>/` and use URLs starting with `/media/` in JSON. The optional `cover` selects the image shown in the project card. Without it, the card uses the first image or video poster; projects without a suitable image keep their decorative preview.
+
+The gallery supports both images and videos. Videos have native playback controls, play inline on mobile, and load on demand without autoplay. Switching media or closing the dialog pauses playback. Use descriptive localized titles, readable images, and web-compatible video formats such as MP4 with H.264 video and AAC audio.
+
+### Preparing recordings for the web
+
+Keep original MP4 recordings in `assets/<project-id>/`. This source folder is ignored by Git; publish optimized versions from `public/media/` instead. With FFmpeg installed and available on your PATH:
+
+```sh
+node scripts/prepare-project-media.mjs
+```
+
+Alternatively, provide its executable path:
+
+```sh
+node scripts/prepare-project-media.mjs --ffmpeg /path/to/ffmpeg
+```
+
+The script preserves the original files and the complete recording duration. It produces 1280-pixel-wide H.264/AAC MP4 videos at 24 fps with a bitrate cap, moves metadata to the start of each video for streaming, and extracts JPEG posters. Existing outputs are skipped; move an output aside before regenerating it. Use `--posters-only` to generate just the poster images.
+
+Check each video and poster before publishing, and add the generated paths and translated titles to the project's `media` array. FFmpeg is a media preparation tool, not an application dependency.
+
 ## Social links and icons
 
 Social networks are listed in `profile.socialLinks`. Each entry has a unique English `id`, a display `name`, a `url`, and an `icon` path:

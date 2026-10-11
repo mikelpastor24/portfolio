@@ -33,6 +33,7 @@
     "schemaCaption": "ESQUEMAS QUE TOMAN FORMA"
   },
   "dialog": { "close": "Cerrar proyecto", "example": "CONCEPTO DE EJEMPLO", "technologies": "Tecnologías y áreas", "visit": "Visitar proyecto", "code": "Ver código" },
+  "media": { "gallery": "Imágenes y vídeos del proyecto", "choose": "Elegir imagen o vídeo", "video": "Vídeo", "image": "Imagen", "error": "No se ha podido cargar este archivo.", "openFile": "Abrir archivo" },
   "about": { "eyebrow": "02 / SOBRE MÍ", "heading": "Un espacio propio.", "headingAccent": "También en internet.", "note": "En constante construcción", "placeholder": "Presentación provisional · pendiente de completar." },
   "contact": { "eyebrow": "03 / CONTACTO", "heading": "Toda buena idea", "headingSecond": "empieza con un", "headingAccent": "hola.", "description": "Un proyecto, una pregunta o una conversación.", "cta": "Hablemos", "pending": "Contacto próximamente", "pendingDescription": "Datos de contacto pendientes." },
   "footer": { "personalPortfolio": "Portfolio personal", "note": "Hecho con intención.", "backToTop": "Volver arriba" }

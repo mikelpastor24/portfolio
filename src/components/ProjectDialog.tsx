@@ -3,6 +3,7 @@ import type { KeyboardEvent, MouseEvent } from 'react'
 import type { Project } from '../content/portfolio'
 import { Icon } from './Icon'
 import { ProjectPreview } from './ProjectPreview'
+import { ProjectGallery } from './ProjectGallery'
 import { useLocale } from '../i18n/LocaleProvider'
 
 export function ProjectDialog({ project, onClose }: { project: Project; onClose: () => void }) {
@@ -24,7 +25,7 @@ export function ProjectDialog({ project, onClose }: { project: Project; onClose:
   const close = () => dialogRef.current?.close()
   const trapFocus = (event: KeyboardEvent<HTMLDialogElement>) => {
     if (event.key !== 'Tab' || event.ctrlKey || event.altKey || event.metaKey) return
-    const elements = Array.from(event.currentTarget.querySelectorAll<HTMLElement>('button:not([disabled]), a[href]'))
+    const elements = Array.from(event.currentTarget.querySelectorAll<HTMLElement>('button:not([disabled]), a[href], video[controls]'))
       .filter((element) => element.getClientRects().length > 0)
     const first = elements[0]
     const last = elements.at(-1)
@@ -45,7 +46,7 @@ export function ProjectDialog({ project, onClose }: { project: Project; onClose:
   return (
     <dialog ref={dialogRef} className="project-dialog" aria-labelledby="dialog-title" onClose={(event) => { if (!event.currentTarget.open) onClose() }} onClick={onBackdropClick} onKeyDown={trapFocus}>
       <button className="dialog-close icon-button" aria-label={messages.dialog.close} onClick={close} autoFocus><Icon name="close" /></button>
-      <ProjectPreview variant={project.preview} />
+      {project.media.length ? <ProjectGallery media={project.media} /> : <ProjectPreview variant={project.preview} />}
       <div className="dialog-content">
         <p className="eyebrow">{project.isExample ? messages.dialog.example : project.category[locale].toUpperCase()}</p>
         <h2 id="dialog-title">{project.title[locale]}</h2>

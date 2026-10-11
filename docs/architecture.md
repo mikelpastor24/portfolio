@@ -14,6 +14,9 @@
 - [`public/icons/`](../public/icons/): social SVG icons and their license notice.
 - [`tests/portfolio.spec.ts`](../tests/portfolio.spec.ts): browser checks for desktop and mobile.
 - [`tests/theme.spec.ts`](../tests/theme.spec.ts): system theme detection, manual selection, and persistence.
+- [`tests/media.spec.ts`](../tests/media.spec.ts): image galleries, video playback, loading, and error handling.
+- [`public/media/`](../public/media/): published project images, video posters, and optimized recordings.
+- [`scripts/prepare-project-media.mjs`](../scripts/prepare-project-media.mjs): prepares web recordings and posters from local originals in the ignored `assets/` folder.
 - [`docs/`](./): development and maintenance documentation.
 
 Project details use a dialog. Standalone project routes and Markdown articles have not been implemented.
