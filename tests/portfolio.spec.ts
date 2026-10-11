@@ -42,16 +42,42 @@ test('project details close with Escape and restore focus', async ({ page }) => 
   expect(await page.evaluate(() => document.body.style.overflow)).not.toBe('hidden')
 })
 
-test('published project details keep repository links and keyboard focus in both languages', async ({ page }) => {
+test('published projects open package links and keep dialog focus in both languages', async ({ page }) => {
+  await page.context().route('https://pub.dev/packages/*', (route) => route.fulfill({
+    contentType: 'text/html',
+    body: '<!doctype html><title>Package destination</title>',
+  }))
   await page.goto('/')
   const publishedProjects = [
-    { title: 'gamer-jev', repository: 'https://github.com/mikelpastor24/gamer-jev' },
-    { title: 'schema_engine', repository: 'https://github.com/mikelpastor24/schema_engine' },
+    { title: 'gamer-jev', repository: 'https://github.com/mikelpastor24/gamer-jev', packages: [] },
+    {
+      title: 'schema_engine',
+      repository: 'https://github.com/mikelpastor24/schema_engine',
+      packages: [
+        { name: 'schema_engine', url: 'https://pub.dev/packages/schema_engine' },
+        { name: 'schema_ui', url: 'https://pub.dev/packages/schema_ui' },
+      ],
+    },
   ]
   for (const { button, messages } of [{ button: 'Español', messages: spanish }, { button: 'English', messages: english }]) {
     await page.getByRole('button', { name: button, exact: true }).click()
     for (const project of publishedProjects) {
       const trigger = page.getByRole('button', { name: `${messages.projects.view} ${project.title}`, exact: true })
+      const card = page.getByRole('article').filter({ has: trigger })
+      await expect(card.getByRole('list', { name: messages.projects.packages })).toHaveCount(project.packages.length ? 1 : 0)
+      for (const packageLink of project.packages) {
+        const link = card.getByRole('link', { name: messages.projects.packageLink.replace('{name}', packageLink.name), exact: true })
+        await expect(link).toBeVisible()
+        await expect(link).toHaveAttribute('href', packageLink.url)
+        await expect(link).toHaveAttribute('target', '_blank')
+        await expect(link).toHaveAttribute('rel', 'noopener noreferrer')
+        const popupPromise = page.waitForEvent('popup')
+        await link.click()
+        const popup = await popupPromise
+        await expect(popup).toHaveURL(packageLink.url)
+        await popup.close()
+        await expect(page.getByRole('dialog')).toHaveCount(0)
+      }
       await trigger.click()
       const dialog = page.getByRole('dialog', { name: project.title, exact: true })
       const repositoryLink = dialog.getByRole('link', { name: messages.dialog.code })
@@ -59,6 +85,20 @@ test('published project details keep repository links and keyboard focus in both
       await expect(repositoryLink).toHaveAttribute('target', '_blank')
       await expect(repositoryLink).toHaveAttribute('rel', 'noopener noreferrer')
       await expect(dialog.getByRole('link', { name: messages.dialog.visit })).toHaveCount(0)
+      await expect(dialog.getByRole('list', { name: messages.projects.packages })).toHaveCount(project.packages.length ? 1 : 0)
+      for (const packageLink of project.packages) {
+        const link = dialog.getByRole('link', { name: messages.projects.packageLink.replace('{name}', packageLink.name), exact: true })
+        await expect(link).toHaveAttribute('href', packageLink.url)
+        await expect(link).toHaveAttribute('target', '_blank')
+        await expect(link).toHaveAttribute('rel', 'noopener noreferrer')
+        const popupPromise = page.waitForEvent('popup')
+        await link.click()
+        const popup = await popupPromise
+        await expect(popup).toHaveURL(packageLink.url)
+        await popup.close()
+        await expect(dialog).toBeVisible()
+      }
+      await dialog.getByRole('button', { name: messages.dialog.close }).focus()
       if (button === 'Español') {
         await dialog.screenshot({ path: `artifacts/${test.info().project.name}-${project.title}-dialog.png`, animations: 'disabled' })
       }

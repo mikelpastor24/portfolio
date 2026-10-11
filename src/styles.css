@@ -152,6 +152,10 @@
   .project-meta { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 9px; color: var(--muted); font-size: 10px; }
   .meta-separator { color: var(--subtle); }
   .project-description { margin-top: 12px; color: var(--muted); font-size: 12px; line-height: 1.6; }
+  .project-packages { margin-top: 16px; }
+  .project-packages-label { color: var(--muted); font-size: 10px; }
+  .project-package-links { display: flex; flex-wrap: wrap; gap: 4px 24px; margin: 6px 0 0; padding: 0; list-style: none; }
+  .project-package-links .text-link { min-height: 32px; color: var(--green); }
   .project-media-cover { background: var(--preview-portfolio); }
   .project-media-cover > img { width: 100%; height: 100%; object-fit: contain; }
   .project-video-badge { position: absolute; bottom: 14px; left: 16px; display: flex; align-items: center; gap: 6px; font-size: 10px; padding: 7px 10px; border-radius: 30px; background: var(--overlay); color: var(--green); }

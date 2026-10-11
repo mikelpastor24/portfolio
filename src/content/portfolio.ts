@@ -18,6 +18,11 @@ export type SocialLink = {
   icon: string
 }
 
+export type ProjectPackage = {
+  name: string
+  url: string
+}
+
 export type Project = {
   id: string
   title: LocalizedText
@@ -28,6 +33,7 @@ export type Project = {
   preview: Preview
   cover?: string
   media: ProjectMedia[]
+  packages: ProjectPackage[]
   status: LocalizedText
   isExample: boolean
   url?: string
@@ -54,4 +60,5 @@ export const projects: Project[] = configuration.projects.map((project) => ({
   ...project,
   preview: getPreview(project.preview),
   media: (project.media ?? []).map((media) => ({ ...media, type: getMediaType(media.type) })),
+  packages: project.packages ?? [],
 }))

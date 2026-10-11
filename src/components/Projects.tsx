@@ -2,6 +2,7 @@ import { projects } from '../content/portfolio'
 import type { Project } from '../content/portfolio'
 import { Icon } from './Icon'
 import { ProjectThumbnail } from './ProjectThumbnail'
+import { ProjectPackageLinks } from './ProjectPackageLinks'
 import { Reveal } from './Reveal'
 import { useLocale } from '../i18n/LocaleProvider'
 
@@ -30,6 +31,7 @@ export function Projects({ onSelect }: { onSelect: (project: Project) => void })
               <div className="project-heading"><h3>{project.title[locale]}</h3><span className="project-number">{String(index + 1).padStart(2, '0')}</span></div>
               <div className="project-meta"><span>{project.category[locale]}</span><span className="meta-separator">/</span><span>{project.status[locale]}</span></div>
               <p className="project-description">{project.description[locale]}</p>
+              <ProjectPackageLinks packages={project.packages} />
             </article>
           </Reveal>
         ))}

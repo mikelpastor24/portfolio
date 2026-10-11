@@ -16,7 +16,7 @@
     "footnote": "A glimpse of what's next.",
     "scroll": "Scroll to discover"
   },
-  "projects": { "eyebrow": "01 / PROJECTS", "heading": "What's taking shape", "asideFirst": "An initial selection.", "asideSecond": "A starting point.", "view": "View project", "example": "Sample concept" },
+  "projects": { "eyebrow": "01 / PROJECTS", "heading": "What's taking shape", "asideFirst": "An initial selection.", "asideSecond": "A starting point.", "view": "View project", "example": "Sample concept", "packages": "Packages on pub.dev", "packageLink": "{name} on pub.dev" },
   "preview": {
     "portfolioCaption": "SIMPLE, BY DESIGN",
     "personalSpace": "A PERSONAL SPACE",

@@ -8,6 +8,17 @@ Edit [`src/content/portfolio.json`](../src/content/portfolio.json) to change the
 
 The included projects are this portfolio, gamer-jev, and schema_engine (the monorepo containing the Dart engine and Flutter UI packages). Each project can include `url` and `repository`; these links appear in its details dialog. Leave a link empty when no public destination is available.
 
+Projects can also include an optional `packages` array. Each entry has a display `name` and a pub.dev `url`; package links appear directly in the project card and in its details dialog. For example:
+
+```json
+"packages": [
+  { "name": "schema_engine", "url": "https://pub.dev/packages/schema_engine" },
+  { "name": "schema_ui", "url": "https://pub.dev/packages/schema_ui" }
+]
+```
+
+Omit the array or leave it empty for projects without published packages.
+
 The `preview` field selects a decorative illustration: `portfolio`, `gamer`, `schema`, or `concept`. These previews are illustrations, not screenshots of the projects. Set `isExample` to `true` for sample projects so the interface labels them clearly.
 
 Keep unfinished content clearly identified as a placeholder. Do not present sample projects as completed professional work.

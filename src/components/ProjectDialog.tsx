@@ -4,6 +4,7 @@ import type { Project } from '../content/portfolio'
 import { Icon } from './Icon'
 import { ProjectPreview } from './ProjectPreview'
 import { ProjectGallery } from './ProjectGallery'
+import { ProjectPackageLinks } from './ProjectPackageLinks'
 import { useLocale } from '../i18n/LocaleProvider'
 
 export function ProjectDialog({ project, onClose }: { project: Project; onClose: () => void }) {
@@ -69,6 +70,7 @@ export function ProjectDialog({ project, onClose }: { project: Project; onClose:
         <ul className="technology-list" aria-label={messages.dialog.technologies}>
           {project.technologies.map((technology) => <li key={technology}>{technology}</li>)}
         </ul>
+        <ProjectPackageLinks packages={project.packages} />
         {(project.url || project.repository) && (
           <div className="dialog-links">
             {project.url && <a className="text-link" href={project.url} target="_blank" rel="noopener noreferrer">{messages.dialog.visit} <Icon name="arrow-up-right" /></a>}

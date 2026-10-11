@@ -96,22 +96,26 @@
       "id": "schema-engine",
       "title": { "es": "schema_engine", "en": "schema_engine" },
       "category": { "es": "Herramientas para JSON Schema", "en": "JSON Schema tools" },
-      "description": { "es": "Del JSON Schema a la validación en Dart y a interfaces generadas en Flutter.", "en": "From JSON Schema to validation in Dart and generated interfaces in Flutter." },
+      "description": { "es": "Dos paquetes publicados en pub.dev: validación de JSON Schema en Dart y formularios y edición visual en Flutter.", "en": "Two packages published on pub.dev: JSON Schema validation in Dart, with forms and visual editing in Flutter." },
       "details": {
         "es": [
-          "En este monorepositorio reúno dos paquetes: schema_engine, escrito en Dart, y schema_ui, escrito en Flutter y construido sobre el primero.",
+          "En este monorepositorio reúno dos paquetes publicados en pub.dev: schema_engine, escrito en Dart, y schema_ui, escrito en Flutter y construido sobre el primero. Ambos se pueden instalar directamente desde el registro de paquetes de Dart y Flutter.",
           "schema_engine permite generar y parsear JSON Schemas, y ofrece validación compilada con el objetivo de conseguir el mayor rendimiento posible en Dart.",
           "schema_ui lleva esos esquemas a la interfaz con widgets de Flutter. Incluye un formulario generado a partir de un JSON Schema para crear instancias de JSON y un constructor visual para crear esquemas de forma más sencilla."
         ],
         "en": [
-          "This monorepo brings together two packages: schema_engine, written in Dart, and schema_ui, written in Flutter and built on top of the engine.",
+          "This monorepo brings together two packages published on pub.dev: schema_engine, written in Dart, and schema_ui, written in Flutter and built on top of the engine. Both can be installed directly from the Dart and Flutter package registry.",
           "schema_engine generates and parses JSON Schemas and provides compiled validation, with the goal of achieving the best possible performance in Dart.",
           "schema_ui turns those schemas into Flutter widgets. It includes a form generated from a JSON Schema to create JSON instances and a visual builder that makes creating schemas easier."
         ]
       },
       "technologies": ["Dart", "Flutter", "JSON Schema"],
       "preview": "schema",
-      "status": { "es": "Monorepositorio", "en": "Monorepo" },
+      "packages": [
+        { "name": "schema_engine", "url": "https://pub.dev/packages/schema_engine" },
+        { "name": "schema_ui", "url": "https://pub.dev/packages/schema_ui" }
+      ],
+      "status": { "es": "Publicado en pub.dev", "en": "Published on pub.dev" },
       "isExample": false,
       "url": "",
       "repository": "https://github.com/mikelpastor24/schema_engine"

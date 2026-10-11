@@ -22,6 +22,7 @@ The website should clearly present their profile, projects, and contact informat
 ## Structure and commands
 
 - `src/content/portfolio.json` centralizes the profile, projects, and links. Unfinished content must remain clearly identified as a placeholder.
+- Projects can include an optional `packages` array with a `name` and pub.dev `url` for each package. `ProjectPackageLinks` shows these links in both project cards and details dialogs.
 - Projects can include a `media` array with `image` or `video` entries (`src`, localized `title`, and optional video `poster`) and an optional `cover`. `ProjectGallery` displays them with native video controls and pauses playback when switching media or closing the dialog. `ProjectThumbnail` uses real media when available and falls back to an illustration.
 - Keep original recordings in the ignored `assets/<project-id>/` folder. `scripts/prepare-project-media.mjs` uses FFmpeg to create complete optimized MP4 recordings and JPEG posters in `public/media/<project-id>/`. Use `/media/` URLs in JSON; do not publish the large source recordings.
 - `profile.socialLinks` lists social networks with an English `id`, a `name`, an `icon` path, and a `url` that can be a string or an `es`/`en` object. Place SVG icons in `public/icons/`; CSS masks make them follow the link color in both themes. Keep their license notices with the assets.
