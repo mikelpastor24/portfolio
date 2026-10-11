@@ -8,6 +8,7 @@ function escapeHtml(value: string) {
 }
 
 export default defineConfig({
+  base: '/',
   plugins: [
     react(),
     {

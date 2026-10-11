@@ -16,7 +16,8 @@ The website should clearly present their profile, projects, and contact informat
 - Personal information and projects must be editable through JSON.
 - The theme follows the system by default. Users can choose light or dark mode or return to the system setting. Manual choices are remembered.
 - The application uses React, TypeScript, Vite, and CSS. Vite and TypeScript were selected as the implementation foundation.
-- His profile and links are in the configuration; hosting and the remaining professional content have yet to be defined.
+- His profile and links are in the configuration; the remaining professional content has yet to be defined.
+- Publish the portfolio with GitHub Pages and GitHub Actions at `mikelpastor.com`, without `www` as the primary address. Keep Vite's `base: '/'` and root-relative asset URLs aligned with the custom domain.
 
 ## Structure and commands
 
@@ -31,6 +32,7 @@ The website should clearly present their profile, projects, and contact informat
 - `src/theme/ThemeProvider.tsx` manages the theme, and `public/theme-init.js` applies it before React loads. Keep the `portfolio.theme` storage key consistent and use CSS variables so new elements work in both themes.
 - `npm run dev` starts the local server; `npm run build` checks TypeScript and generates `dist/`.
 - `npm run lint` runs Oxlint; `npm test` checks desktop and mobile interactions with Playwright.
+- `.github/workflows/deploy.yml` checks, builds, and publishes pushes to `main`, with a manual trigger. It runs browser tests in Google Chrome before deploying `dist/`. The custom domain is configured in GitHub Pages settings, not a `CNAME` file; `docs/deployment.md` documents the required setup.
 - Browser checks use Google Chrome, as requested by the user.
 - The README presents the project's purpose, features, technologies, and links to technical documentation in `docs/`. Setup and browser options for testing are documented in `docs/development.md`.
 

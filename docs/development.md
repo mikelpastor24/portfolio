@@ -33,6 +33,8 @@ npm run preview
 
 Portfolio data and translations are included at build time. Vite reloads JSON changes during development; rebuild the application to update a deployed website.
 
+GitHub Actions checks and publishes pushes to `main`. See [Deployment](deployment.md) for the workflow and the one-time GitHub Pages and custom domain setup.
+
 ## Browser tests
 
 With Google Chrome installed:

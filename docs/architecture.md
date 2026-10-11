@@ -18,8 +18,11 @@
 - [`public/media/`](../public/media/): published project images, video posters, and optimized recordings.
 - [`scripts/prepare-project-media.mjs`](../scripts/prepare-project-media.mjs): prepares web recordings and posters from local originals in the ignored `assets/` folder.
 - [`docs/`](./): development and maintenance documentation.
+- [`.github/workflows/deploy.yml`](../.github/workflows/deploy.yml): checks, builds, and publishes `main` to GitHub Pages.
 
 Project details use a dialog. Standalone project routes and Markdown articles have not been implemented.
+
+The production website is served from the custom domain root with Vite's `base: '/'`. See [Deployment](deployment.md) for GitHub Pages and DNS setup.
 
 ## Language selection
 

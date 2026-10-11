@@ -24,6 +24,7 @@ I built it with **React**, **TypeScript**, **Vite**, and **CSS**.
 - [Development](docs/development.md): local setup, builds, and browser tests.
 - [Customization](docs/customization.md): profile, projects, translations, and assets.
 - [Architecture](docs/architecture.md): project structure, themes, and repository conventions.
+- [Deployment](docs/deployment.md): automatic publishing and custom domain setup.
 
 ## License
 
