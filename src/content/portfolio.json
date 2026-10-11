@@ -59,18 +59,22 @@
       "id": "gamer-jev",
       "title": { "es": "gamer-jev", "en": "gamer-jev" },
       "category": { "es": "IA y videojuegos", "en": "AI and games" },
-      "description": { "es": "Jev jugando a Pokémon, con una base preparada para incorporar otros juegos.", "en": "Jev playing Pokémon, with a foundation designed to support more games." },
+      "description": { "es": "Un entorno local para que Jev juegue a Game Boy, con un visor de sus decisiones y perfiles para Pokémon de primera generación.", "en": "A local environment for Jev to play Game Boy games, with a decision viewer and profiles for first-generation Pokémon." },
       "details": {
         "es": [
-          "Con gamer-jev conecto a Jev, la IA de TypeSafe, con videojuegos. Actualmente puede jugar a los títulos de la primera generación de Pokémon.",
-          "El objetivo es que Jev pueda jugar a cualquier juego. La estructura del proyecto está pensada para facilitar la implementación de nuevos juegos y ampliar los que puede jugar."
+          "gamer-jev conecta a Jev, la IA de TypeSafe, con un emulador local de Game Boy. A partir del estado del juego y, de forma opcional, observaciones visuales, Jev elige acciones para avanzar hacia los objetivos definidos por el usuario.",
+          "El visor web permite seguir la partida, inspeccionar las decisiones y el estado del juego, jugar manualmente y guardar o restaurar puntos de control. Incluye sonido estéreo y una demo con un agente simulado para probar la aplicación sin conexión ni credenciales.",
+          "La aplicación está desarrollada en TypeScript y Node.js, con Serverboy para la emulación y Web Audio para el sonido. Su arquitectura separa el emulador, los proveedores de IA y los perfiles de cada juego, de modo que se pueden añadir nuevos perfiles sin cambiar el bucle de juego compartido.",
+          "El soporte actual se centra en Game Boy, con perfiles para revisiones concretas en inglés de Pokémon Rojo, Azul y Amarillo. Estos perfiles interpretan el estado de la partida y adaptan las acciones al contexto; el soporte de partidas completas sigue en desarrollo."
         ],
         "en": [
-          "With gamer-jev, I connect Jev, TypeSafe's AI, to video games. It currently supports playing the first generation of Pokémon games.",
-          "The goal is to let Jev play any game. The project is structured to make implementing new games straightforward and expand the games it can play."
+          "gamer-jev connects Jev, TypeSafe's AI, to a local Game Boy emulator. Using the game state and optional visual observations, Jev selects actions to work toward objectives defined by the user.",
+          "The web viewer lets you follow gameplay, inspect decisions and game state, play manually, and save or restore checkpoints. It includes stereo sound and a demo with a mock agent to try the application offline without credentials.",
+          "The application is built with TypeScript and Node.js, using Serverboy for emulation and Web Audio for sound. Its architecture separates the emulator, AI providers, and game-specific profiles, so new profiles can be added without changing the shared gameplay loop.",
+          "Current support focuses on Game Boy, with profiles for specific English revisions of Pokémon Red, Blue, and Yellow. These profiles interpret game state and adapt actions to the context; full-game support remains in development."
         ]
       },
-      "technologies": ["Jev", "TypeSafe"],
+      "technologies": ["TypeScript", "Node.js", "Serverboy", "Web Audio", "TypeSafe AI"],
       "preview": "gamer",
       "cover": "/media/gamer-jev/jev-beats-pokemon-red-first-gym.jpg",
       "media": [
@@ -87,7 +91,7 @@
           "title": { "es": "Jev supera el primer gimnasio", "en": "Jev beats the first gym" }
         }
       ],
-      "status": { "es": "Pokémon Gen I", "en": "Pokémon Gen I" },
+      "status": { "es": "Game Boy", "en": "Game Boy" },
       "isExample": false,
       "url": "",
       "repository": "https://github.com/mikelpastor24/gamer-jev"
