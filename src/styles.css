@@ -179,6 +179,38 @@
   .concept-shape > div { width: 21cqw; height: 21cqw; border: 1px solid var(--concept-outline); border-radius: 50%; transform: translate(-8cqw, 7cqw); }
   .concept-footer { position: absolute; bottom: 3.8cqw; left: 4.3cqw; right: 4.3cqw; display: flex; justify-content: space-between; align-items: center; font-size: 1.45cqw; color: var(--subtle); }
   .concept-footer > span:last-child { font-size: 3cqw; }
+  .visual-gamer { background: var(--preview-portfolio); }
+  .visual-schema { background: var(--preview-concept); }
+  .game-preview-panel, .schema-preview-panel { background: var(--paper); border: 1px solid var(--line); border-radius: 9px; padding: 4cqw; box-shadow: 0 18px 40px #17201912; }
+  .game-preview-panel { width: 74%; transform: rotate(-3deg); }
+  .schema-preview-panel { width: 82%; transform: rotate(2deg); }
+  .preview-panel-heading { display: flex; align-items: center; justify-content: space-between; gap: 2cqw; padding-bottom: 2.5cqw; border-bottom: 1px solid var(--line); }
+  .preview-panel-heading strong { font-size: 3cqw; font-weight: 550; letter-spacing: -0.04em; }
+  .preview-panel-heading > span { font-size: 1.6cqw; color: var(--muted); }
+  .game-preview-screen { margin-top: 3cqw; border-radius: 5px; overflow: hidden; border: 1px solid var(--line); background: var(--soft-green); }
+  .game-preview-title { display: flex; align-items: center; justify-content: space-between; padding: 2cqw; color: var(--green); gap: 2cqw; }
+  .game-preview-title > span:first-child { font-size: 2.3cqw; font-weight: 500; }
+  .game-preview-title > span:last-child { font-size: 1.2cqw; letter-spacing: 0.05em; }
+  .game-preview-map { width: 100%; height: auto; }
+  .game-map-grid { stroke: var(--line); stroke-width: 0.7; }
+  .game-map-route { stroke: var(--green); stroke-width: 2; stroke-dasharray: 4 5; stroke-linecap: round; stroke-linejoin: round; }
+  .game-map-tile { fill: var(--accent); opacity: 0.3; }
+  .game-map-player { fill: var(--green); }
+  .game-map-goal { stroke: var(--green); stroke-width: 2; }
+  .game-preview-decision { display: flex; gap: 1.3cqw; align-items: center; margin-top: 2.5cqw; color: var(--muted); font-size: 1.6cqw; }
+  .game-preview-decision .small-dot { width: 0.8cqw; height: 0.8cqw; }
+  .game-preview-decision > span:last-child { margin-left: auto; color: var(--green); }
+  .schema-preview-columns { display: grid; grid-template-columns: 1fr 1fr; gap: 3cqw; margin-top: 3cqw; }
+  .preview-panel-label { font-size: 1.7cqw; font-weight: 500; color: var(--green); }
+  .schema-preview-editor { min-width: 0; }
+  .schema-preview-editor pre { margin: 2cqw 0 0; font-size: 1.6cqw; line-height: 1.6; color: var(--muted); }
+  .schema-preview-form { display: flex; flex-direction: column; border-left: 1px solid var(--line); padding-left: 3cqw; }
+  .schema-preview-form-title { font-size: 2.1cqw; margin-top: 3cqw; line-height: 1.4; }
+  .schema-preview-field-label { font-size: 1.6cqw; margin-top: 3cqw; color: var(--muted); }
+  .schema-preview-field { height: 5.5cqw; margin-top: 1cqw; border: 1px solid var(--line); border-radius: 4px; display: flex; align-items: center; padding: 1.3cqw; }
+  .schema-preview-field > span { width: 65%; height: 0.6cqw; background: var(--line); }
+  .schema-preview-builder { display: flex; align-items: center; gap: 1.3cqw; margin-top: auto; padding: 1.6cqw; border-radius: 4px; background: var(--soft-green); color: var(--green); font-size: 1.5cqw; }
+  .schema-preview-builder > span:first-child { font-family: monospace; font-size: 2.2cqw; }
   .about-section { padding-block: 84px 90px; }
   .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 92px; }
   .about-grid .eyebrow { margin-bottom: 23px; color: var(--muted); }
@@ -217,6 +249,7 @@
   .project-dialog { border: 0; border-radius: 16px; background: var(--paper); color: var(--ink); padding: 0; width: min(640px, calc(100% - 32px)); max-height: calc(100dvh - 48px); overscroll-behavior: contain; box-shadow: 0 30px 100px #17201930; animation: dialog-enter 240ms ease both; }
   .project-dialog::backdrop { background: #17201973; backdrop-filter: blur(5px); }
   .project-dialog > .project-visual { aspect-ratio: 2.1; }
+  .project-dialog > .visual-gamer, .project-dialog > .visual-schema { aspect-ratio: 1.5; }
   .dialog-close { position: absolute; z-index: 2; top: 14px; right: 14px; background: var(--paper); }
   .dialog-content { padding: 32px 36px 36px; }
   .dialog-content .eyebrow { color: var(--muted); margin-bottom: 12px; }

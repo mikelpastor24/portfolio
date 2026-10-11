@@ -17,7 +17,21 @@
     "scroll": "Desliza para descubrir"
   },
   "projects": { "eyebrow": "01 / PROYECTOS", "heading": "Lo que va tomando forma", "asideFirst": "Una primera selección.", "asideSecond": "Un punto de partida.", "view": "Ver proyecto", "example": "Concepto de ejemplo" },
-  "preview": { "portfolioCaption": "SIMPLE, POR DISEÑO", "personalSpace": "UN ESPACIO PERSONAL", "conceptCaption": "UN ESTUDIO DE FORMAS", "conceptFooter": "Espacio para las ideas.", "conceptVisualCaption": "FORMA & ESPACIO" },
+  "preview": {
+    "portfolioCaption": "SIMPLE, POR DISEÑO",
+    "personalSpace": "UN ESPACIO PERSONAL",
+    "conceptCaption": "UN ESTUDIO DE FORMAS",
+    "conceptFooter": "Espacio para las ideas.",
+    "conceptVisualCaption": "FORMA & ESPACIO",
+    "gameGeneration": "PRIMERA GENERACIÓN",
+    "gameDecision": "Decisión de Jev",
+    "gameAction": "Siguiente movimiento",
+    "gameCaption": "JEV EN JUEGO",
+    "schemaForm": "Formulario generado",
+    "schemaName": "Nombre",
+    "schemaBuilder": "Constructor visual",
+    "schemaCaption": "ESQUEMAS QUE TOMAN FORMA"
+  },
   "dialog": { "close": "Cerrar proyecto", "example": "CONCEPTO DE EJEMPLO", "technologies": "Tecnologías y áreas", "visit": "Visitar proyecto", "code": "Ver código" },
   "about": { "eyebrow": "02 / SOBRE MÍ", "heading": "Un espacio propio.", "headingAccent": "También en internet.", "note": "En constante construcción", "placeholder": "Presentación provisional · pendiente de completar." },
   "contact": { "eyebrow": "03 / CONTACTO", "heading": "Toda buena idea", "headingSecond": "empieza con un", "headingAccent": "hola.", "description": "Un proyecto, una pregunta o una conversación.", "cta": "Hablemos", "pending": "Contacto próximamente", "pendingDescription": "Datos de contacto pendientes." },

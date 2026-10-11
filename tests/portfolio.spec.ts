@@ -20,7 +20,8 @@ test('the page loads without runtime errors and fits the viewport', async ({ pag
   await page.goto('/')
   await expect(page.getByRole('heading', { level: 1 })).toHaveText('Hacerlo simple.Hacerlo bien.')
   await expect(page.getByRole('button', { name: 'Ver proyecto Portfolio personal' })).toBeVisible()
-  await expect(page.getByText('Concepto de ejemplo', { exact: true })).toBeVisible()
+  await expect(page.getByRole('button', { name: 'Ver proyecto gamer-jev', exact: true })).toBeVisible()
+  await expect(page.getByRole('button', { name: 'Ver proyecto schema_engine', exact: true })).toBeVisible()
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true)
   expect(errors).toEqual([])
   await capturePreview(page, 'es')
@@ -39,6 +40,37 @@ test('project details close with Escape and restore focus', async ({ page }) => 
   await expect(dialog).not.toBeVisible()
   await expect(trigger).toBeFocused()
   expect(await page.evaluate(() => document.body.style.overflow)).not.toBe('hidden')
+})
+
+test('published project details keep repository links and keyboard focus in both languages', async ({ page }) => {
+  await page.goto('/')
+  const publishedProjects = [
+    { title: 'gamer-jev', repository: 'https://github.com/mikelpastor24/gamer-jev' },
+    { title: 'schema_engine', repository: 'https://github.com/mikelpastor24/schema_engine' },
+  ]
+  for (const { button, messages } of [{ button: 'Español', messages: spanish }, { button: 'English', messages: english }]) {
+    await page.getByRole('button', { name: button, exact: true }).click()
+    for (const project of publishedProjects) {
+      const trigger = page.getByRole('button', { name: `${messages.projects.view} ${project.title}`, exact: true })
+      await trigger.click()
+      const dialog = page.getByRole('dialog', { name: project.title, exact: true })
+      const repositoryLink = dialog.getByRole('link', { name: messages.dialog.code })
+      await expect(repositoryLink).toHaveAttribute('href', project.repository)
+      await expect(repositoryLink).toHaveAttribute('target', '_blank')
+      await expect(repositoryLink).toHaveAttribute('rel', 'noopener noreferrer')
+      await expect(dialog.getByRole('link', { name: messages.dialog.visit })).toHaveCount(0)
+      if (button === 'Español') {
+        await dialog.screenshot({ path: `artifacts/${test.info().project.name}-${project.title}-dialog.png`, animations: 'disabled' })
+      }
+      await page.keyboard.press('Shift+Tab')
+      await expect(repositoryLink).toBeFocused()
+      await page.keyboard.press('Tab')
+      await expect(dialog.getByRole('button', { name: messages.dialog.close })).toBeFocused()
+      await page.keyboard.press('Escape')
+      await expect(dialog).not.toBeVisible()
+      await expect(trigger).toBeFocused()
+    }
+  }
 })
 
 test('language selection updates content and links and persists across reloads', async ({ page }) => {

@@ -56,26 +56,50 @@
       "repository": ""
     },
     {
-      "id": "interface-study",
-      "title": { "es": "Estudio de interfaz", "en": "Interface study" },
-      "category": { "es": "Concepto visual", "en": "Visual concept" },
-      "description": { "es": "Una exploración de formas, espacios y tipografía.", "en": "An exploration of shapes, space and typography." },
+      "id": "gamer-jev",
+      "title": { "es": "gamer-jev", "en": "gamer-jev" },
+      "category": { "es": "IA y videojuegos", "en": "AI and games" },
+      "description": { "es": "Jev jugando a Pokémon, con una base preparada para incorporar otros juegos.", "en": "Jev playing Pokémon, with a foundation designed to support more games." },
       "details": {
         "es": [
-          "Esta tarjeta es un concepto de ejemplo para mostrar cómo se presentará un proyecto. No representa un trabajo profesional realizado.",
-          "Un espacio reservado para próximos proyectos, con su contexto, proceso y resultado."
+          "Con gamer-jev conecto a Jev, la IA de TypeSafe, con videojuegos. Actualmente puede jugar a los títulos de la primera generación de Pokémon.",
+          "El objetivo es que Jev pueda jugar a cualquier juego. La estructura del proyecto está pensada para facilitar la implementación de nuevos juegos y ampliar los que puede jugar."
         ],
         "en": [
-          "This card is a sample concept to show how a project will be presented. It does not represent completed professional work.",
-          "A space reserved for future projects, with their context, process and outcome."
+          "With gamer-jev, I connect Jev, TypeSafe's AI, to video games. It currently supports playing the first generation of Pokémon games.",
+          "The goal is to let Jev play any game. The project is structured to make implementing new games straightforward and expand the games it can play."
         ]
       },
-      "technologies": ["CSS"],
-      "preview": "concept",
-      "status": { "es": "Ejemplo provisional", "en": "Placeholder example" },
-      "isExample": true,
+      "technologies": ["Jev", "TypeSafe"],
+      "preview": "gamer",
+      "status": { "es": "Pokémon Gen I", "en": "Pokémon Gen I" },
+      "isExample": false,
       "url": "",
-      "repository": ""
+      "repository": "https://github.com/mikelpastor24/gamer-jev"
+    },
+    {
+      "id": "schema-engine",
+      "title": { "es": "schema_engine", "en": "schema_engine" },
+      "category": { "es": "Herramientas para JSON Schema", "en": "JSON Schema tools" },
+      "description": { "es": "Del JSON Schema a la validación en Dart y a interfaces generadas en Flutter.", "en": "From JSON Schema to validation in Dart and generated interfaces in Flutter." },
+      "details": {
+        "es": [
+          "En este monorepositorio reúno dos paquetes: schema_engine, escrito en Dart, y schema_ui, escrito en Flutter y construido sobre el primero.",
+          "schema_engine permite generar y parsear JSON Schemas, y ofrece validación compilada con el objetivo de conseguir el mayor rendimiento posible en Dart.",
+          "schema_ui lleva esos esquemas a la interfaz con widgets de Flutter. Incluye un formulario generado a partir de un JSON Schema para crear instancias de JSON y un constructor visual para crear esquemas de forma más sencilla."
+        ],
+        "en": [
+          "This monorepo brings together two packages: schema_engine, written in Dart, and schema_ui, written in Flutter and built on top of the engine.",
+          "schema_engine generates and parses JSON Schemas and provides compiled validation, with the goal of achieving the best possible performance in Dart.",
+          "schema_ui turns those schemas into Flutter widgets. It includes a form generated from a JSON Schema to create JSON instances and a visual builder that makes creating schemas easier."
+        ]
+      },
+      "technologies": ["Dart", "Flutter", "JSON Schema"],
+      "preview": "schema",
+      "status": { "es": "Monorepositorio", "en": "Monorepo" },
+      "isExample": false,
+      "url": "",
+      "repository": "https://github.com/mikelpastor24/schema_engine"
     }
   ],
   "principles": [

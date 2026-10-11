@@ -2,7 +2,7 @@ import configuration from './portfolio.json' with { type: 'json' }
 import type { Locale } from '../i18n/types.ts'
 
 type LocalizedText = Record<Locale, string>
-type Preview = 'portfolio' | 'concept'
+type Preview = 'portfolio' | 'concept' | 'gamer' | 'schema'
 
 export type SocialLink = {
   id: string
@@ -26,8 +26,8 @@ export type Project = {
 }
 
 function getPreview(value: string): Preview {
-  if (value === 'portfolio' || value === 'concept') return value
-  throw new Error(`Unknown project preview: ${value}. Use "portfolio" or "concept" in portfolio.json.`)
+  if (value === 'portfolio' || value === 'concept' || value === 'gamer' || value === 'schema') return value
+  throw new Error(`Unknown project preview: ${value}. Use "portfolio", "concept", "gamer", or "schema" in portfolio.json.`)
 }
 
 export const profile = configuration.profile

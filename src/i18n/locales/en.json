@@ -17,7 +17,21 @@
     "scroll": "Scroll to discover"
   },
   "projects": { "eyebrow": "01 / PROJECTS", "heading": "What's taking shape", "asideFirst": "An initial selection.", "asideSecond": "A starting point.", "view": "View project", "example": "Sample concept" },
-  "preview": { "portfolioCaption": "SIMPLE, BY DESIGN", "personalSpace": "A PERSONAL SPACE", "conceptCaption": "A STUDY OF SHAPES", "conceptFooter": "Room for ideas.", "conceptVisualCaption": "SHAPE & SPACE" },
+  "preview": {
+    "portfolioCaption": "SIMPLE, BY DESIGN",
+    "personalSpace": "A PERSONAL SPACE",
+    "conceptCaption": "A STUDY OF SHAPES",
+    "conceptFooter": "Room for ideas.",
+    "conceptVisualCaption": "SHAPE & SPACE",
+    "gameGeneration": "FIRST GENERATION",
+    "gameDecision": "Jev's decision",
+    "gameAction": "Next move",
+    "gameCaption": "JEV AT PLAY",
+    "schemaForm": "Generated form",
+    "schemaName": "Name",
+    "schemaBuilder": "Visual builder",
+    "schemaCaption": "SCHEMAS TAKING SHAPE"
+  },
   "dialog": { "close": "Close project", "example": "SAMPLE CONCEPT", "technologies": "Technologies and areas", "visit": "Visit project", "code": "View code" },
   "about": { "eyebrow": "02 / ABOUT ME", "heading": "A space of my own.", "headingAccent": "On the internet, too.", "note": "Always taking shape", "placeholder": "Placeholder introduction · more to come." },
   "contact": { "eyebrow": "03 / CONTACT", "heading": "Every good idea", "headingSecond": "starts with a", "headingAccent": "hello.", "description": "A project, a question or a conversation.", "cta": "Let's talk", "pending": "Contact details coming soon", "pendingDescription": "Contact details are not set yet." },

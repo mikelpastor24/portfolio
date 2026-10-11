@@ -1,8 +1,12 @@
 import type { Project } from '../content/portfolio'
 import { useLocale } from '../i18n/LocaleProvider'
+import { GamePreview } from './GamePreview'
+import { SchemaPreview } from './SchemaPreview'
 
 export function ProjectPreview({ variant }: { variant: Project['preview'] }) {
   const { messages } = useLocale()
+  if (variant === 'gamer') return <GamePreview />
+  if (variant === 'schema') return <SchemaPreview />
   if (variant === 'concept') {
     return (
       <div className="project-visual visual-concept" aria-hidden="true">

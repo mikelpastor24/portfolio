@@ -6,7 +6,9 @@
 
 Edit [`src/content/portfolio.json`](../src/content/portfolio.json) to change the name, specialty, introduction, email, social links, and projects. The included configuration contains Mikel Pastor's profile; replace it with your own details when adapting the project. Contact links appear only when a value is configured. Once the introduction is complete, set `aboutIsPlaceholder` to `false`.
 
-The first project describes this website. The second is a visual concept explicitly labeled as an example: replace it with a real project or remove it. Each project can include `url` and `repository`; these links appear in its details dialog.
+The included projects are this portfolio, gamer-jev, and schema_engine (the monorepo containing the Dart engine and Flutter UI packages). Each project can include `url` and `repository`; these links appear in its details dialog. Leave a link empty when no public destination is available.
+
+The `preview` field selects a decorative illustration: `portfolio`, `gamer`, `schema`, or `concept`. These previews are illustrations, not screenshots of the projects. Set `isExample` to `true` for sample projects so the interface labels them clearly.
 
 Keep unfinished content clearly identified as a placeholder. Do not present sample projects as completed professional work.
 
