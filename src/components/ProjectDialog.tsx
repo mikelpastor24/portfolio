@@ -72,7 +72,7 @@ export function ProjectDialog({ project, onClose }: { project: Project; onClose:
         {(project.url || project.repository) && (
           <div className="dialog-links">
             {project.url && <a className="text-link" href={project.url} target="_blank" rel="noopener noreferrer">{messages.dialog.visit} <Icon name="arrow-up-right" /></a>}
-            {project.repository && <a className="text-link" href={project.repository} target="_blank" rel="noopener noreferrer">{messages.dialog.code} <Icon name="arrow-up-right" /></a>}
+            {project.repository && <a className="text-link" href={project.repository} target="_blank" rel="noopener noreferrer"><span className="social-icon" aria-hidden="true" style={{ maskImage: 'url("/icons/github.svg")' }} />{messages.dialog.code} <Icon name="arrow-up-right" /></a>}
           </div>
         )}
       </div>
