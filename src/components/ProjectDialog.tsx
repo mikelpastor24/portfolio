@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useCallback, useEffect, useRef } from 'react'
 import type { KeyboardEvent, MouseEvent } from 'react'
 import type { Project } from '../content/portfolio'
 import { Icon } from './Icon'
@@ -9,20 +9,35 @@ import { useLocale } from '../i18n/LocaleProvider'
 export function ProjectDialog({ project, onClose }: { project: Project; onClose: () => void }) {
   const { locale, messages } = useLocale()
   const dialogRef = useRef<HTMLDialogElement>(null)
+  const previousOverflowRef = useRef<string | null>(null)
+
+  const restorePage = useCallback((dialog: HTMLDialogElement) => {
+    for (const video of dialog.querySelectorAll('video')) video.pause()
+    if (previousOverflowRef.current !== null) {
+      document.body.style.overflow = previousOverflowRef.current
+      previousOverflowRef.current = null
+    }
+  }, [])
 
   useEffect(() => {
     const dialog = dialogRef.current
     if (!dialog) return
-    const previousOverflow = document.body.style.overflow
+    previousOverflowRef.current = document.body.style.overflow
     document.body.style.overflow = 'hidden'
     dialog.showModal()
     return () => {
+      restorePage(dialog)
       dialog.close()
-      document.body.style.overflow = previousOverflow
     }
-  }, [])
+  }, [restorePage])
 
-  const close = () => dialogRef.current?.close()
+  const close = () => {
+    const dialog = dialogRef.current
+    if (!dialog) return
+    // Release scrolling and pause playback before the dialog becomes hidden.
+    restorePage(dialog)
+    dialog.close()
+  }
   const trapFocus = (event: KeyboardEvent<HTMLDialogElement>) => {
     if (event.key !== 'Tab' || event.ctrlKey || event.altKey || event.metaKey) return
     const elements = Array.from(event.currentTarget.querySelectorAll<HTMLElement>('button:not([disabled]), a[href], video[controls]'))
@@ -44,7 +59,7 @@ export function ProjectDialog({ project, onClose }: { project: Project; onClose:
   }
 
   return (
-    <dialog ref={dialogRef} className="project-dialog" aria-labelledby="dialog-title" onClose={(event) => { if (!event.currentTarget.open) onClose() }} onClick={onBackdropClick} onKeyDown={trapFocus}>
+    <dialog ref={dialogRef} className="project-dialog" aria-labelledby="dialog-title" onCancel={(event) => { event.preventDefault(); close() }} onClose={(event) => { if (!event.currentTarget.open) { restorePage(event.currentTarget); onClose() } }} onClick={onBackdropClick} onKeyDown={trapFocus}>
       <button className="dialog-close icon-button" aria-label={messages.dialog.close} onClick={close} autoFocus><Icon name="close" /></button>
       {project.media.length ? <ProjectGallery media={project.media} /> : <ProjectPreview variant={project.preview} />}
       <div className="dialog-content">

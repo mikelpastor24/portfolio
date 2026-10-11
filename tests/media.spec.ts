@@ -46,6 +46,31 @@ test('project videos load on demand, play, and pause when switching or closing',
   await expect(englishGallery.locator('video')).toHaveJSProperty('paused', true)
 })
 
+test('dialog close requests pause video and restore page scrolling synchronously', async ({ page }) => {
+  await page.goto('/')
+  await page.evaluate(() => { document.body.style.overflow = 'scroll' })
+  const trigger = page.getByRole('button', { name: 'Ver proyecto gamer-jev', exact: true })
+
+  for (const method of ['request', 'button', 'backdrop'] as const) {
+    await trigger.click()
+    const dialog = page.getByRole('dialog', { name: 'gamer-jev', exact: true })
+    await dialog.locator('video').evaluate(async (video: HTMLVideoElement) => { video.muted = true; await video.play() })
+    const state = await dialog.evaluate((element: HTMLDialogElement, closeMethod) => {
+      const video = element.querySelector('video')!
+      if (closeMethod === 'request') element.requestClose()
+      else if (closeMethod === 'button') element.querySelector<HTMLButtonElement>('.dialog-close')!.click()
+      else {
+        const rect = element.getBoundingClientRect()
+        element.dispatchEvent(new MouseEvent('click', { bubbles: true, clientX: rect.left - 1, clientY: rect.top - 1 }))
+      }
+      return { open: element.open, paused: video.paused, overflow: document.body.style.overflow }
+    }, method)
+    expect(state, `Dialog state immediately after closing through ${method}`).toEqual({ open: false, paused: true, overflow: 'scroll' })
+    await expect(dialog).not.toBeVisible()
+    await expect(trigger).toBeFocused()
+  }
+})
+
 test('project images can be configured in JSON and selected in either language', async ({ page }) => {
   const customConfiguration = {
     ...configuration,
