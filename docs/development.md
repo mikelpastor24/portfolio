@@ -47,6 +47,8 @@ Playwright checks runtime errors, horizontal overflow, navigation, dialog focus,
 
 They also save full-page screenshots for both languages, desktop and mobile layouts, and dark mode in `artifacts/`.
 
+The search indexing tests also check that crawlers can retrieve `robots.txt` and the sitemap, that the sitemap matches the canonical URL in the original HTML, and that language changes preserve that URL. Run them separately with `npm test -- tests/seo.spec.ts`.
+
 ### Using Playwright's Chromium
 
 Install Chromium:

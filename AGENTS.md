@@ -34,6 +34,7 @@ The website should clearly present their profile, projects, and contact informat
 - `npm run dev` starts the local server; `npm run build` checks TypeScript and generates `dist/`.
 - `npm run lint` runs Oxlint; `npm test` checks desktop and mobile interactions with Playwright.
 - `.github/workflows/deploy.yml` checks, builds, and publishes pushes to `main`, with a manual trigger. It runs browser tests in Google Chrome before deploying `dist/`. The custom domain is configured in GitHub Pages settings, not a `CNAME` file; `docs/deployment.md` documents the required setup.
+- `index.html` declares `https://mikelpastor.com/` as the canonical and Open Graph URL. Keep it aligned with `public/robots.txt` and `public/sitemap.xml`; the sitemap lists only the homepage, without section fragments or nonexistent language routes.
 - Browser checks use Google Chrome, as requested by the user.
 - The README presents the project's purpose, features, technologies, and links to technical documentation in `docs/`. Setup and browser options for testing are documented in `docs/development.md`.
 

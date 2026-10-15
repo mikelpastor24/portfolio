@@ -71,3 +71,26 @@ npm run preview
 ```
 
 If deployment fails during Pages configuration, check that the publishing source is GitHub Actions. If the website deploys but the custom domain does not resolve, review the DNS records and certificate status in Settings → Pages.
+
+## Search indexing
+
+The canonical page is `https://mikelpastor.com/`. The HTML declares this address with `rel="canonical"` and `og:url` before JavaScript runs. Keep those URLs aligned with [`public/robots.txt`](../public/robots.txt) and [`public/sitemap.xml`](../public/sitemap.xml) if the domain changes.
+
+`robots.txt` allows crawling of the entire public website, including the JavaScript, CSS, and media needed to render it, and points crawlers to the sitemap. Vite copies both files into the root of `dist/`. The sitemap lists only the canonical homepage: section fragments such as `#projects` and `#about` are part of that page, and the language buttons currently share its URL. Do not list fragments, redirecting domain variants, or language paths that the application does not serve.
+
+After publishing an indexing change:
+
+1. Confirm that `https://mikelpastor.com/`, `/robots.txt`, and `/sitemap.xml` return HTTP 200, and that the HTML declares the canonical URL without a `noindex` directive.
+2. In Google Search Console, select the domain property and submit `https://mikelpastor.com/sitemap.xml` in **Sitemaps**.
+3. Use **URL inspection** for `https://mikelpastor.com/`, run **Test live URL**, check that crawling is allowed and the rendered page contains the portfolio, and request indexing.
+4. For **Blocked by robots.txt**, open the issue and inspect the exact example URL, its hostname, and its last crawl date. Test that URL live before selecting **Validate fix**. A report exported without example URLs is not enough to identify the blocked page.
+
+**Page with redirect** is expected for HTTP or `www` variants that permanently redirect to the canonical HTTPS address. Keep these redirects; Google should index the destination. A missing `robots.txt` returning HTTP 404 does not itself block crawling. If the live canonical page is crawlable but an older report still lists a block, compare the affected URL and crawl date rather than assuming the homepage is currently blocked. See Google's [Page indexing report guide](https://support.google.com/webmasters/answer/7440203?hl=en) and [robots.txt HTTP status handling](https://developers.google.com/crawling/docs/robots-txt/robots-txt-spec#handling-http-status-codes).
+
+Google needs to crawl the deployed changes before Search Console can reflect them. A sitemap and a request to index help discovery but do not guarantee indexing or a particular search ranking.
+
+### October 2026 report
+
+The Search Console export dated October 15, 2026 lists one URL blocked by robots.txt: `http://www.mikelpastor.com/`, last crawled on October 3. The overview also lists one indexed URL and two URLs with redirects, without identifying those URLs.
+
+Live HTTP checks on October 15 found that the affected URL redirects directly with HTTP 301 to `https://mikelpastor.com/`, which returns HTTP 200. Its `robots.txt` also redirects to the canonical host, where the file currently returns HTTP 404. These responses do not reproduce a current robots block and suggest that the exported warning reflects an earlier crawl. Confirm this with Search Console's live inspection of the exact affected URL; checking from a local connection does not verify access from Google's servers. The new crawl files and canonical metadata take effect after deployment.

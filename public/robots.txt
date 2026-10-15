@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://mikelpastor.com/sitemap.xml
